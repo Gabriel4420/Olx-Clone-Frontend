@@ -53,7 +53,11 @@ export const Container = styled.div`
 
     li {
       margin: 20px;
-      a {
+      a,
+      button {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
         color: #000;
         font-size: 18px;
         text-decoration: none;

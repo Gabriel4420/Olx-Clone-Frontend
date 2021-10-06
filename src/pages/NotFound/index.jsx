@@ -1,13 +1,9 @@
-import { ReactNode } from 'react'
-
-import { Container, Animation } from './styles'
-import Video from '../../Assets/Videos/Loop.mp4'
-function NotFound() {
+import { Container } from './styles'
+import Error404 from '../../components/Error404'
+const NotFound = () => {
   return (
     <Container>
-      <h1>Page NotFound</h1>
-
-      <img src={Video} />
+      <Error404></Error404>
     </Container>
   )
 }

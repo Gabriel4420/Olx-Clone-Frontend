@@ -11,7 +11,8 @@ export const Container = styled.div`
   }
 `
 
-export const Animation = styled.video`
+export const Animation = styled.img`
   width: 320px;
   height: 240px;
+  border-radius: 20%;
 `
