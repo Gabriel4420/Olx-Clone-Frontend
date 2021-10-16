@@ -75,7 +75,7 @@ const api = {
   },
 
   getAds: async (options) => {
-    const json = await apiFetchGet('/ad/list', options)
+    const json = await apiFetchGet('/ad/list?sort=asc', options)
     return json
   },
   getAd: async (id, othersAds = false) => {
