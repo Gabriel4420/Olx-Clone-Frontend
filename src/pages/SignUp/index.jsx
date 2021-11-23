@@ -25,7 +25,7 @@ const SignUp = () => {
       setStateList(slist)
     }
     getStates()
-  }, [])
+  }, [api])
 
   const handleSubmit = async (event) => {
     event.preventDefault()

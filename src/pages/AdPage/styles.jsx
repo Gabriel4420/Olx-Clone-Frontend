@@ -49,7 +49,7 @@ export const AdName = styled.div`
     color: #999;
   }
 `
-export const AdDescription = styled.p`
+export const AdDescription = styled.div`
   color: #999;
 `
 export const RightSide = styled.div`
@@ -82,5 +82,29 @@ export const RightSide = styled.div`
     margin-top: 10px;
     font-size: 15px;
     font-weight: bold;
+  }
+`
+
+export const OthersArea = styled.div`
+  h2 {
+    font-size: 20px;
+  }
+  .list {
+    display: flex;
+
+    .aditem {
+      width: 25%;
+    }
+  }
+`
+
+export const BreadCrumb = styled.div`
+  font-size: 13px;
+  margin-top: 20px;
+  a {
+    display: inline-block;
+    margin: 0 5px;
+    text-decoration: underline;
+    color: black;
   }
 `

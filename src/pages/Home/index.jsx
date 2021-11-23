@@ -24,7 +24,7 @@ const Page = () => {
       setStateList(slist)
     }
     getStates()
-  }, [])
+  }, [api])
 
   useEffect(() => {
     const getCategories = async () => {
@@ -32,7 +32,7 @@ const Page = () => {
       setCategories(cats)
     }
     getCategories()
-  }, [])
+  }, [api])
 
   useEffect(() => {
     const getRecentAds = async () => {
@@ -43,7 +43,7 @@ const Page = () => {
       setAdList(json.ads)
     }
     getRecentAds()
-  }, [])
+  }, [api])
 
   return (
     <>
@@ -81,7 +81,6 @@ const Page = () => {
             ))}
             <Link to="/ads" className="seeAllLinks">Ver todos</Link>
 
-            <hr />
             <Description>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text

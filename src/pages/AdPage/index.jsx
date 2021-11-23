@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { Slide } from 'react-slideshow-image'
 import AdItem from '../../components/partials/AdItem'
 import { PageContainer } from '../../components/MainComponents'
@@ -13,24 +13,27 @@ import {
   AdDescription,
   RightSide,
   Fake,
+  OthersArea,
+  BreadCrumb,
 } from './styles'
 import useApi from '../../helpers/OlxApi'
 
 const AdPage = () => {
+  
   const api = useApi()
-
   const { id } = useParams()
   const [loading, setLoading] = useState(true)
   const [adInfo, setAdInfo] = useState({})
 
   useEffect(() => {
+   
     const getAdInfo = async (id) => {
       const json = await api.getAd(id, true)
       setAdInfo(json)
       setLoading(false)
     }
     getAdInfo(id)
-  }, [id])
+  }, [id, api])
 
   const formatDate = (date) => {
     let cDate = new Date(date)
@@ -57,6 +60,15 @@ const AdPage = () => {
 
   return (
     <PageContainer>
+      {adInfo.category && (
+        <BreadCrumb>
+          Você esta aqui :<Link to="/">Home</Link>/
+          <Link to={`/ads?state=${adInfo.stateName}`}>{adInfo.stateName}</Link>/
+          <Link to={`/ads?state=${adInfo.stateName}&cat=${adInfo.category.slug}`}>{adInfo.category.name}</Link>/
+          {adInfo.title}
+        </BreadCrumb>
+      )}
+
       <PageArea>
         <LeftSide>
           <Box>
@@ -83,7 +95,7 @@ const AdPage = () => {
               <AdDescription>
                 {loading && <Fake height={100} />}
                 {adInfo.description}
-                <hr />
+
                 {adInfo.views && <small>Visualizações : {adInfo.views}</small>}
               </AdDescription>
             </AdInfo>
@@ -106,6 +118,7 @@ const AdPage = () => {
                 <a
                   href={`mailto:${adInfo.userInfo.email}`}
                   target="_blank"
+                  rel="noreferrer"
                   className="contactSellerLink"
                 >
                   Fale com o vendedor
@@ -119,18 +132,21 @@ const AdPage = () => {
             )}
           </Box>
         </RightSide>
-        {console.log(`${adInfo.others}`)}
+      </PageArea>
+      <OthersArea>
         {adInfo.others && (
           <>
             <h2> Outras ofertas do vendedor</h2>
             <div className="list">
-              {adInfo.others.map((i, k) => (
-                <AdItem key={k} data={i} />
-              ))}
+              {adInfo.others
+                .filter((item, idx) => idx < 4)
+                .map((i, k) => (
+                  <AdItem key={k} data={i } />
+                ))}
             </div>
           </>
         )}
-      </PageArea>
+      </OthersArea>
     </PageContainer>
   )
 }

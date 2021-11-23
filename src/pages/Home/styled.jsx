@@ -31,7 +31,7 @@ export const List = styled.div`
   }
 `
 
-export const Description = styled.p``
+export const Description = styled.div``
 
 export const SearchBox = styled.div`
   background-color: #9bb83c;
